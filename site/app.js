@@ -86,29 +86,26 @@ function miniLine(id,points,start,end,color){
   const el=$(id);
   if(points.length<2){el.textContent="此區間資料不足";return}
   const W=560,H=220,L=65,R=12,T=12,B=30;
-  const v=points.map(p=>+p[1]),lo0=Math.min(...v),hi0=Math.max(...v),pad=(hi0-lo0)*.1||Math.abs(lo0)*.03||1,lo=lo0-pad,hi=hi0+pad;
-  const startMs=Date.parse(start+"T00:00:00Z"),endMs=Date.parse(end+"T00:00:00Z"),span=Math.max(1,endMs-startMs);
+  const vals=points.map(p=>Number(p[1]));
+  const lo0=Math.min(...vals),hi0=Math.max(...vals);
+  const pad=(hi0-lo0)*0.1||Math.abs(lo0)*0.03||1;
+  const lo=lo0-pad,hi=hi0+pad;
+  const startMs=Date.parse(start+"T00:00:00Z");
+  const endMs=Date.parse(end+"T00:00:00Z");
+  const span=Math.max(1,endMs-startMs);
   const x=d=>L+(Date.parse(d+"T00:00:00Z")-startMs)/span*(W-L-R);
   const y=n=>T+(hi-n)/(hi-lo)*(H-T-B);
-  const path=points.map((p,i)=>(i?"L":"M")+x(p[0]).toFixed(2)+","+y(+p[1]).toFixed(2)).join(" ");
-  const grids=[0,1,2,3,4].map(i=>{const yy=T+i*(H-T-B)/4;return '<line x1="'+L+'" y1="'+yy+'" x2="'+(W-R)+'" y2="'+yy+'" stroke="#edf1f6"/><text class="axis" x="'+(L-8)+'" y="'+(yy+4)+'" text-anchor="end">
-  $(group).querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{
-    $(group).querySelectorAll("button").forEach(e=>e.classList.toggle("active",e===b));
-    cb(b.dataset[attr]);draw();
-  }));
-}
-setup("tabs","k",v=>metric=v);setup("ranges","d",v=>days=+v);setup("compare-ranges","d",v=>{comparisonDays=+v;drawComparison()});
-(async()=>{
-  try{
-    const r=await fetch("./data/latest.json",{cache:"no-store"});
-    if(!r.ok)throw Error("HTTP "+r.status);
-    snapshot=await r.json();
-    if(snapshot.schema_version!=="1.0")throw Error("unsupported schema");
-    freshness(snapshot);render();
-  }catch(e){$("regime").textContent="資料讀取失敗";$("updated").textContent=String(e);console.error(e)}
-})();+f(hi-(hi-lo)*i/4,0)+'</text>'}).join("");
-  const axis='<text class="axis" x="'+L+'" y="'+(H-6)+'">'+safe(start)+'</text><text class="axis" x="'+(W-R)+'" y="'+(H-6)+'" text-anchor="end">'+safe(end)+'</text>';
-  el.innerHTML='<svg viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none" role="img" aria-label="同期間價格線圖">'+grids+'<path d="'+path+'" fill="none" stroke="'+color+'" stroke-width="2.5" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>'+axis+'</svg>';
+  const path=points.map((p,i)=>(i?"L":"M")+x(p[0]).toFixed(2)+","+y(Number(p[1])).toFixed(2)).join(" ");
+  const grids=[0,1,2,3,4].map(i=>{
+    const yy=T+i*(H-T-B)/4;
+    const label="$"+f(hi-(hi-lo)*i/4,0);
+    return '<line x1="'+L+'" y1="'+yy+'" x2="'+(W-R)+'" y2="'+yy+'" stroke="#edf1f6"/>'+
+      '<text class="axis" x="'+(L-8)+'" y="'+(yy+4)+'" text-anchor="end">'+label+'</text>';
+  }).join("");
+  const axis='<text class="axis" x="'+L+'" y="'+(H-6)+'">'+safe(start)+'</text>'+
+    '<text class="axis" x="'+(W-R)+'" y="'+(H-6)+'" text-anchor="end">'+safe(end)+'</text>';
+  el.innerHTML='<svg viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none" role="img" aria-label="同期間價格線圖">'+
+    grids+'<path d="'+path+'" fill="none" stroke="'+color+'" stroke-width="2.5" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>'+axis+'</svg>';
 }
 function drawComparison(){
   if(!snapshot)return;
@@ -122,25 +119,34 @@ function drawComparison(){
   for(const key of ["btc","mstr"]){
     const pts=result[key],last=pts[pts.length-1],ret=result[key+"Return"];
     $("compare-"+key+"-value").textContent=format(key,last[1]);
-    const el=$("compare-"+key+"-return");el.textContent=(ret>=0?"+":"")+f(ret,2)+"%";el.className=ret>=0?"up":"down";
+    const badge=$("compare-"+key+"-return");
+    badge.textContent=(ret>=0?"+":"")+f(ret,2)+"%";
+    badge.className=ret>=0?"up":"down";
     $("compare-"+key+"-meta").textContent=pts.length+" 個價格觀測點 · 截至 "+last[0];
     miniLine("compare-"+key+"-chart",pts,result.start,result.end,key==="btc"?"#f59e0b":"#527eb3");
   }
 }
-
 function setup(group,attr,cb){
   $(group).querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{
     $(group).querySelectorAll("button").forEach(e=>e.classList.toggle("active",e===b));
-    cb(b.dataset[attr]);draw();
+    cb(b.dataset[attr]);
+    draw();
   }));
 }
-setup("tabs","k",v=>metric=v);setup("ranges","d",v=>days=+v);
+setup("tabs","k",v=>metric=v);
+setup("ranges","d",v=>days=+v);
+setup("compare-ranges","d",v=>{comparisonDays=+v;drawComparison()});
 (async()=>{
   try{
     const r=await fetch("./data/latest.json",{cache:"no-store"});
     if(!r.ok)throw Error("HTTP "+r.status);
     snapshot=await r.json();
     if(snapshot.schema_version!=="1.0")throw Error("unsupported schema");
-    freshness(snapshot);render();
-  }catch(e){$("regime").textContent="資料讀取失敗";$("updated").textContent=String(e);console.error(e)}
+    freshness(snapshot);
+    render();
+  }catch(e){
+    $("regime").textContent="資料讀取失敗";
+    $("updated").textContent=String(e);
+    console.error(e);
+  }
 })();
