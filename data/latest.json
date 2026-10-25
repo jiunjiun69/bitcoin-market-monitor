@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "generated_at": null,
+  "summary": {
+    "regime": "unknown",
+    "counts": {
+      "watch": 0,
+      "clear": 0,
+      "unknown": 4
+    },
+    "method": "等待資料首次更新"
+  },
+  "metrics": {},
+  "weekly": {
+    "date": null,
+    "close": null,
+    "sma": {
+      "50": null,
+      "200": null,
+      "300": null
+    }
+  },
+  "signals": [],
+  "health": [],
+  "series": {
+    "btc": [],
+    "mstr": [],
+    "mnav": [],
+    "mvrv": [],
+    "ratio": []
+  },
+  "disclosures": []
+}
