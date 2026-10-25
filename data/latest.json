@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-25T16:19:51+00:00",
+  "generated_at": "2026-10-25T16:21:15+00:00",
   "metrics": {
     "btc": {
       "value": 80769.67,
@@ -17,10 +17,10 @@
       "max_age_days": 5
     },
     "mnav": {
-      "value": null,
-      "date": null,
-      "freshness": "missing",
-      "source": "Strategy official post-2026-07-23",
+      "value": 1.18,
+      "date": "2026-10-25",
+      "freshness": "fresh",
+      "source": "mnav.com Strategy MSTR third-party asset-based multiple (NOT official mNAV)",
       "max_age_days": 5
     },
     "mvrv": {
@@ -61,7 +61,7 @@
       "id": "mnav",
       "title": "mNAV 高位溢價收縮",
       "status": "unknown",
-      "evidence": "需要至少16筆同口徑有效觀測",
+      "evidence": "資料累積中：需16筆同口徑歷史觀測後才能判定；這不是來源故障。",
       "observed_at": null
     },
     {
@@ -97,8 +97,7 @@
     },
     {
       "name": "mnav",
-      "status": "error",
-      "details": "403 Client Error: Forbidden for url: https://www.strategy.com/"
+      "status": "ok"
     },
     {
       "name": "mvrv",
@@ -10914,7 +10913,12 @@
         146.00999450683594
       ]
     ],
-    "mnav": [],
+    "mnav": [
+      [
+        "2026-10-25",
+        1.18
+      ]
+    ],
     "mvrv": [
       [
         "2026-10-24",
@@ -12930,7 +12934,7 @@
   },
   "disclosures": [
     "各指標不是即時行情；注意資料日期與過期狀態。",
-    "mNAV 使用Strategy官網2026年新定義；不得與舊公式混用。",
+    "mNAV 使用 mnav.com 第三方口徑，不等同 Strategy 官方淨資產口徑；不能跨公式比較。",
     "MVRV是第三方重建，不是Glassnode原始數據。",
     "MSTR/BTC為非同步收盤近似；所有風險門檻未回測，非投資建議。"
   ]
