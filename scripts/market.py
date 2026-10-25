@@ -103,8 +103,11 @@ def metric(points,source,maxage,now):
     "freshness":"fresh" if p and -1<=age(p[0],now)<=maxage else "stale" if p else "missing",
     "source":source,"max_age_days":maxage}
 
-def signal(key,title,status,note,day=None):
-    return {"id":key,"title":title,"status":status,"evidence":note,"observed_at":day}
+def signal(key,title,status,note,day=None,label=None,detail=None):
+    result={"id":key,"title":title,"status":status,"evidence":note,"observed_at":day}
+    if label is not None:result["label"]=label
+    if detail is not None:result["detail"]=detail
+    return result
 
 def mnav_signal(points, reading, now):
     """Current premium is interpretable immediately; trend needs >=16 recent days."""
