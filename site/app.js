@@ -4,7 +4,7 @@ const safe=x=>String(x??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"
 const f=(v,d=0)=>v==null||!Number.isFinite(Number(v))?"—":Number(v).toLocaleString("en-US",{minimumFractionDigits:d,maximumFractionDigits:d});
 const format=(k,v)=>v==null?"—":k==="btc"?"$"+f(v):k==="mstr"?"$"+f(v,2):k==="ratio"?f(v,6):k==="mnav"?f(v,2)+"x":f(v,2);
 const names={btc:"BTC / USD",ratio:"MSTR / BTC",mnav:"STRATEGY mNAV",mvrv:"MVRV Z-SCORE"};
-const statusText={watch:"警戒",clear:"未觸發",unknown:"待驗證"};
+const statusText={watch:"警戒",clear:"未觸發",unknown:"資料暫缺"};
 let snapshot=null,metric="btc",days=90;
 function freshness(data){
   let today=new Date(),todayUtc=Date.UTC(today.getUTCFullYear(),today.getUTCMonth(),today.getUTCDate());
@@ -16,7 +16,7 @@ function freshness(data){
   for(const s of data.signals||[]){
     let dependencies=s.id==="weekly"?["btc"]:s.id==="ratio"?["ratio","btc","mstr"]:[s.id];
     if(dependencies.some(k=>data.metrics?.[k]?.freshness!=="fresh")){
-      s.status="unknown";s.evidence="來源資料失效或過期，暫停此項風險判定。";
+      s.status="unknown";s.label="資料暫缺";s.evidence="近期數據未更新，暫不判斷。";s.detail="可到下方資料來源查看最後更新日期。";
     }
   }
   let counts={watch:0,clear:0,unknown:0};
@@ -29,12 +29,12 @@ function render(){
   const d=snapshot,m=d.metrics||{},c=d.summary.counts||{};
   $("updated").textContent=d.generated_at?"更新於 "+new Date(d.generated_at).toLocaleString("zh-TW",{timeZone:"Asia/Taipei"}):"尚未更新";
   $("regime").textContent=({unknown:"資料不足",normal:"暫無警報",caution:"提高警覺",high:"高度警戒"})[d.summary.regime]||"資料不足";
-  $("counts").textContent=(c.watch||0)+" 項警示 · "+(c.clear||0)+" 項未觸發 · "+(c.unknown||0)+" 項待驗證";
+  $("counts").textContent=(c.watch||0)+" 項需留意 · "+(c.clear||0)+" 項未觸發"+((c.unknown||0)?" · "+c.unknown+" 項資料暫缺":"");
   $("metrics").innerHTML=["btc","ratio","mnav","mvrv"].map(k=>{
     let x=m[k]||{},st=x.freshness||"missing";
     return '<article class="metric"><div class="tag">'+names[k]+'</div><div class="value">'+safe(format(k,x.value))+'</div><div class="sub '+safe(st)+'">'+(st==="fresh"?"● 有效":st==="stale"?"● 已過期":"● 無資料")+' · '+safe(x.date||"尚未取得")+'</div></article>';
   }).join("");
-  $("signals").innerHTML=(d.signals||[]).map(s=>'<div class="row"><div><strong>'+safe(s.title)+'</strong><small>'+safe(s.evidence)+'</small></div><span class="pill '+safe(s.status)+'">'+(statusText[s.status]||"待驗證")+'</span></div>').join("")||"等待第一次更新";
+  $("signals").innerHTML=(d.signals||[]).map(s=>'<div class="row"><div><strong>'+safe(s.title)+'</strong><small>'+safe(s.evidence)+'</small>'+(s.detail?'<small>'+safe(s.detail)+'</small>':"")+'</div><span class="pill '+safe(s.status)+'">'+safe(s.label||statusText[s.status]||"資料暫缺")+'</span></div>').join("")||"等待第一次更新";
   const w=d.weekly||{},sm=w.sma||{};
   $("weekly").innerHTML=[["最近完整週 K",w.close,w.date],["50 週均線",sm["50"],"50W SMA"],["200 週均線",sm["200"],"200W SMA"],["300 週均線",sm["300"],"300W SMA"]].map(([name,v,detail])=>'<div class="row"><div>'+name+'<small>'+safe(detail||"")+'</small></div><strong>'+(v==null?"—":"$"+f(v))+'</strong></div>').join("");
   $("health").innerHTML=(d.health||[]).map(h=>{
