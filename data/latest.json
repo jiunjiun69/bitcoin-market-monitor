@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-25T16:22:06+00:00",
+  "generated_at": "2026-10-25T16:26:55+00:00",
   "metrics": {
     "btc": {
       "value": 80769.67,
@@ -51,18 +51,20 @@
     "regime": "normal",
     "counts": {
       "watch": 0,
-      "clear": 3,
-      "unknown": 1
+      "clear": 4,
+      "unknown": 0
     },
     "method": "研究性、未經回測校準"
   },
   "signals": [
     {
       "id": "mnav",
-      "title": "mNAV 高位溢價收縮",
-      "status": "unknown",
-      "evidence": "資料累積中：需16筆同口徑歷史觀測後才能判定；這不是來源故障。",
-      "observed_at": null
+      "title": "mNAV 溢價觀察",
+      "status": "clear",
+      "evidence": "目前 1.18x（溢價約 18%）；低於 1.50x 高溢價研究參考線。",
+      "observed_at": "2026-10-25",
+      "label": "溢價未偏高",
+      "detail": "近期走勢仍在建立中；目前先評估溢價水位，尚不判斷是否已從高點明顯收縮。"
     },
     {
       "id": "ratio",
