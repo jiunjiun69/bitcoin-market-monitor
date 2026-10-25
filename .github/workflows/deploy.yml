@@ -40,7 +40,16 @@ jobs:
           git add data/latest.json data/history.json
           if ! git diff --cached --quiet; then
             git commit -m "data: refresh daily observations"
-            git push
+            for attempt in 1 2 3; do
+              git fetch origin main
+              git rebase -X theirs origin/main
+              if git push origin HEAD:main; then
+                break
+              fi
+              if [ "$attempt" = 3 ]; then
+                echo "::warning::Data commit could not be pushed; deployment continues using the generated snapshot."
+              fi
+            done
           fi
       - run: python scripts/build.py
       - uses: actions/configure-pages@v5
