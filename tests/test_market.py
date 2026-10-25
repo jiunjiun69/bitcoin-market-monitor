@@ -10,3 +10,25 @@ def test_weekly_ignores_unfinished_sunday():
 def test_missing_is_not_fresh():
     now=datetime(2026,10,25,12,tzinfo=timezone.utc)
     assert metric([],"test",2,now)["freshness"]=="missing"
+
+from scripts.market import mnav_signal
+
+def test_mnav_single_fresh_reading_is_actionable():
+    now=datetime(2026,10,25,12,tzinfo=timezone.utc)
+    item={"value":1.18,"date":"2026-10-25","freshness":"fresh"}
+    result=mnav_signal([["2026-10-25",1.18]],item,now)
+    assert result["status"]=="clear"
+    assert result["label"]=="溢價未偏高"
+    assert "18%" in result["evidence"]
+    assert "走勢" in result["detail"]
+
+def test_mnav_missing_is_not_false_clear():
+    now=datetime(2026,10,25,12,tzinfo=timezone.utc)
+    result=mnav_signal([],{"value":None,"freshness":"missing"},now)
+    assert result["status"]=="unknown"
+
+def test_mnav_high_premium_warns_without_trend():
+    now=datetime(2026,10,25,12,tzinfo=timezone.utc)
+    result=mnav_signal([["2026-10-25",1.65]],{"value":1.65,"date":"2026-10-25","freshness":"fresh"},now)
+    assert result["status"]=="watch"
+    assert result["label"]=="溢價偏高"
