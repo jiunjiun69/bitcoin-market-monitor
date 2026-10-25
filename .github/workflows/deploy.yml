@@ -32,7 +32,6 @@ jobs:
           cache: pip
       - run: pip install -r requirements.txt pytest
       - run: python -m pytest -q
-      - run: python scripts/probe_sources.py
       - run: python scripts/market.py
       - name: Commit updated public market data
         run: |
