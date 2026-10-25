@@ -58,14 +58,25 @@ def mstr(old):
         except Exception as e:error=e
     raise RuntimeError("MSTR unavailable: "+str(error))
 
+def parse_mnav_page(html, now):
+    soup=BeautifulSoup(html,"html.parser")
+    title=soup.title.get_text(" ",strip=True) if soup.title else ""
+    value=re.search(r"Strategy\s*\(MSTR\)\s*mNAV\s*(\d+(?:\.\d+)?)\s*[×x]",title,re.I)
+    text=soup.get_text(" ",strip=True)
+    updated=re.search(r"last updated\s+([A-Za-z]{3,9}\s+\d{1,2},\s+\d{4})",text,re.I)
+    if not value or not updated:
+        raise RuntimeError("Third-party dated mNAV not present: unexpected page shape")
+    amount=float(value.group(1))
+    day=datetime.strptime(updated.group(1),"%b %d, %Y").date().isoformat()
+    if age(day,now)<-1 or age(day,now)>5 or not 0.1<=amount<=20:
+        raise RuntimeError("Third-party mNAV not fresh or outside valid bounds")
+    return day, amount
+
 def mnav(old,now):
-    text=BeautifulSoup(get("https://www.strategy.com/",html=True),"html.parser").get_text(" ",strip=True)
-    value=re.search(r"\bmNAV\s*(\d+(?:\.\d+)?)\s*[x×](?!\w)",text,re.I)
-    quoted=re.search(r"Securities market data last updated:\s*(\d{1,2}/\d{1,2}/\d{4})",text,re.I)
-    if not value or not quoted:raise RuntimeError("Official dated mNAV not in static HTML")
-    day=datetime.strptime(quoted[1],"%m/%d/%Y").date().isoformat()
-    if age(day,now)<-1:raise RuntimeError("Future quote date")
-    return merge(old,[[day,float(value[1])]])
+    # Third-party proxy measure, NOT the official net-asset definition.
+    html=get("https://www.mnav.com/mnav/strategy",html=True)
+    day,amount=parse_mnav_page(html,now)
+    return merge(old,[[day,amount]])
 
 def mvrv(old,now):
     result=get("https://raw.githubusercontent.com/akpasz/btc-data/main/data/kpis.json")
@@ -109,7 +120,7 @@ def main():
             print(key,"ERROR",e)
     hist["ratio"]=ratio(hist["mstr"],hist["btc"])
     sources={"btc":("Coinbase BTC/USD daily",2),"mstr":("Yahoo Finance unofficial",5),
-      "mnav":("Strategy official post-2026-07-23",5),
+      "mnav":("mnav.com Strategy MSTR third-party asset-based multiple (NOT official mNAV)",5),
       "mvrv":("akpasz/btc-data Coin Metrics reconstructed",3),
       "ratio":("MSTR close / previous BTC UTC close",5)}
     metrics={k:metric(hist[k],*source,now) for k,source in sources.items()}
@@ -119,7 +130,7 @@ def main():
         peak=max(x[1] for x in pts);down=100*(pts[-1][1]/peak-1)
         signals.append(signal("mnav","mNAV 高位溢價收縮","watch" if peak>=1.5 and down<=-15 else "clear",
           "40日峰值 %.2fx，收縮 %.1f%%"%(peak,down),pts[-1][0]))
-    else:signals.append(signal("mnav","mNAV 高位溢價收縮","unknown","需要至少16筆同口徑有效觀測"))
+    else:signals.append(signal("mnav","mNAV 高位溢價收縮","unknown","資料累積中：需16筆同口徑歷史觀測後才能判定；這不是來源故障。"))
     pts=[p for p in hist["ratio"] if age(p[0],now)<=45]
     if len(pts)>=20 and metrics["ratio"]["freshness"]=="fresh" and metrics["btc"]["freshness"]=="fresh" and metrics["mstr"]["freshness"]=="fresh":
         vals=[x[1] for x in pts[-20:]];change=(vals[-1]/vals[0]-1)*100
@@ -142,7 +153,7 @@ def main():
       "signals":signals,"health":health,
       "series":{k:v[-2200:] if k=="btc" else v[-730:] for k,v in hist.items()},
       "disclosures":["各指標不是即時行情；注意資料日期與過期狀態。",
-      "mNAV 使用Strategy官網2026年新定義；不得與舊公式混用。",
+      "mNAV 使用 mnav.com 第三方口徑，不等同 Strategy 官方淨資產口徑；不能跨公式比較。",
       "MVRV是第三方重建，不是Glassnode原始數據。",
       "MSTR/BTC為非同步收盤近似；所有風險門檻未回測，非投資建議。"]}
     save("history.json",hist);save("latest.json",latest)
