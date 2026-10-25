@@ -106,6 +106,43 @@ def metric(points,source,maxage,now):
 def signal(key,title,status,note,day=None):
     return {"id":key,"title":title,"status":status,"evidence":note,"observed_at":day}
 
+def mnav_signal(points, reading, now):
+    """Current premium is interpretable immediately; trend needs >=16 recent days."""
+    day = reading.get("date")
+    if reading.get("freshness") != "fresh" or reading.get("value") is None:
+        return signal("mnav", "mNAV 溢價觀察", "unknown",
+                      "目前沒有可用的近期 mNAV 資料。", day,
+                      label="資料暫缺", detail="請查看下方資料來源狀態，避免把舊值當成當日估值。")
+    value = float(reading["value"])
+    premium = (value - 1) * 100
+    level = f"溢價約 {premium:.0f}%" if premium >= 0 else f"折價約 {-premium:.0f}%"
+    recent = [p for p in points if 0 <= age(p[0], now) <= 40]
+    trend_ready = len(recent) >= 16
+    latest_label = f"目前 {value:.2f}x（{level}）"
+    if trend_ready:
+        peak = max(p[1] for p in recent)
+        contraction = 100 * (1 - value / peak)
+        if peak >= 1.5 and contraction >= 15:
+            return signal("mnav", "mNAV 溢價觀察", "watch",
+                          f"{latest_label}；近期高點 {peak:.2f}x，已收縮 {contraction:.1f}%。",
+                          day, label="溢價收縮",
+                          detail="高位退潮可能使 MSTR 相對 BTC 承受額外壓力，不等於 BTC 已見頂。")
+    else:
+        peak = None
+    trend_detail = (
+        "近期走勢仍在建立中；目前先評估溢價水位，尚不判斷是否已從高點明顯收縮。"
+        if not trend_ready else
+        f"已比對近期 {len(recent)} 筆同口徑觀測，未觸發高位收縮警示。"
+    )
+    if value >= 1.5:
+        return signal("mnav", "mNAV 溢價觀察", "watch",
+                      f"{latest_label}；已達 1.50x 高溢價研究參考線。",
+                      day, label="溢價偏高", detail=trend_detail)
+    return signal("mnav", "mNAV 溢價觀察", "clear",
+                  f"{latest_label}；低於 1.50x 高溢價研究參考線。",
+                  day, label="溢價未偏高", detail=trend_detail)
+
+
 def main():
     now=datetime.now(timezone.utc)
     hist=load("history.json",{})
@@ -125,12 +162,7 @@ def main():
       "ratio":("MSTR close / previous BTC UTC close",5)}
     metrics={k:metric(hist[k],*source,now) for k,source in sources.items()}
     signals=[]
-    pts=[p for p in hist["mnav"] if age(p[0],now)<=40]
-    if len(pts)>=16 and metrics["mnav"]["freshness"]=="fresh":
-        peak=max(x[1] for x in pts);down=100*(pts[-1][1]/peak-1)
-        signals.append(signal("mnav","mNAV 高位溢價收縮","watch" if peak>=1.5 and down<=-15 else "clear",
-          "40日峰值 %.2fx，收縮 %.1f%%"%(peak,down),pts[-1][0]))
-    else:signals.append(signal("mnav","mNAV 高位溢價收縮","unknown","資料累積中：需16筆同口徑歷史觀測後才能判定；這不是來源故障。"))
+    signals.append(mnav_signal(hist["mnav"], metrics["mnav"], now))
     pts=[p for p in hist["ratio"] if age(p[0],now)<=45]
     if len(pts)>=20 and metrics["ratio"]["freshness"]=="fresh" and metrics["btc"]["freshness"]=="fresh" and metrics["mstr"]["freshness"]=="fresh":
         vals=[x[1] for x in pts[-20:]];change=(vals[-1]/vals[0]-1)*100
