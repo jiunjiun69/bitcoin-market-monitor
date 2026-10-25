@@ -6,7 +6,7 @@
 
 - BTC 價格及 50／200／300 週均線
 - MSTR/BTC 相對強弱（美股收盤相對前一根已完成的 BTC UTC 日線，屬時間錯位近似）
-- Strategy 官方 mNAV（2026/07/23 後新定義，不與舊公式混用）
+- mnav.com 第三方 Strategy mNAV（非 Strategy 官方淨資產計算口徑）
 - MVRV Z-Score（公開重建資料，非 Glassnode 原始付費數據）
 - 每個指標獨立顯示來源、日期、資料過期狀態
 - 歷史圖表、四項研究風險訊號；不是自動交易策略
@@ -35,10 +35,10 @@
 | --- | --- | --- |
 | BTC | Coinbase Exchange BTC/USD daily candles | 2 日 |
 | MSTR | Yahoo Finance 非官方 chart API（可能限流） | 5 日 |
-| mNAV | https://www.strategy.com/ 官方頁面；需解析數值與標註的證券報價日期 | 5 日 |
+| mNAV | https://www.mnav.com/mnav/strategy 第三方公開網頁數值及其網站更新日期，非官方淨資產口徑 | 5 日 |
 | MVRV Z | https://github.com/akpasz/btc-data kpis.json；Coin Metrics 公開資料重建，不是 Glassnode | 3 日 |
 
-來源錯誤或逾期一律顯示待驗證，絕不拿過期指標冒充即時訊號。mNAV 首次建站需要累積至少 16 筆同口徑資料，才會啟用高位收縮規則。
+來源錯誤或逾期一律顯示待驗證，絕不拿過期指標冒充即時訊號。mNAV 首次建站需要累積至少 16 筆同口徑資料，才會啟用高位收縮規則。此前屬於**樣本累積中**，不是取得來源失敗。其更新日期可能與美股實際報價日期不同，跨公式數值不可拼接。
 
 **研究規則（未經回測校準）**：
 - mNAV：40 日峰值 ≥1.5x 且收縮 ≥15%，需至少 16 筆
