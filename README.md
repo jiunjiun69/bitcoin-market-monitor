@@ -5,6 +5,7 @@
 ## 功能
 
 - BTC 價格及 50／200／300 週均線
+- 新增 MSTR 最新股價卡片與獨立歷史線圖；BTC / MSTR 同期比較區共用 30D、90D、1Y、ALL 的實際日期範圍、各自美元刻度，並計算在共同交易日期起訖的同期漲跌幅。MSTR 休市日不補值，BTC 與美股日收盤時區不同，對比屬於研究參考。
 - MSTR/BTC 相對強弱（美股收盤相對前一根已完成的 BTC UTC 日線，屬時間錯位近似）
 - mnav.com 第三方 Strategy mNAV（非 Strategy 官方淨資產計算口徑）
 - MVRV Z-Score（公開重建資料，非 Glassnode 原始付費數據）
