@@ -3,7 +3,10 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths-ignore: [README.md, LICENSE]
+    paths-ignore:
+      - README.md
+      - LICENSE
+      - 'data/**'
   schedule:
     - cron: '35 0 * * *'
 permissions:
@@ -41,6 +44,8 @@ jobs:
           fi
       - run: python scripts/build.py
       - uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
