@@ -1,10 +1,10 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-10-31T06:12:25+00:00",
+  "generated_at": "2026-11-01T06:44:58+00:00",
   "metrics": {
     "btc": {
-      "value": 77180.42,
-      "date": "2026-10-30",
+      "value": 77423.98,
+      "date": "2026-10-31",
       "freshness": "fresh",
       "source": "Coinbase BTC/USD daily",
       "max_age_days": 2
@@ -17,8 +17,8 @@
       "max_age_days": 5
     },
     "mnav": {
-      "value": 1.13,
-      "date": "2026-10-31",
+      "value": 1.12,
+      "date": "2026-11-01",
       "freshness": "fresh",
       "source": "mnav.com Strategy MSTR third-party asset-based multiple (NOT official mNAV)",
       "max_age_days": 5
@@ -26,7 +26,7 @@
     "mvrv": {
       "value": 0.816,
       "date": "2026-10-28",
-      "freshness": "fresh",
+      "freshness": "stale",
       "source": "akpasz/btc-data Coin Metrics reconstructed",
       "max_age_days": 3
     },
@@ -51,8 +51,8 @@
     "regime": "caution",
     "counts": {
       "watch": 1,
-      "clear": 3,
-      "unknown": 0
+      "clear": 2,
+      "unknown": 1
     },
     "method": "研究性、未經回測校準"
   },
@@ -61,8 +61,8 @@
       "id": "mnav",
       "title": "mNAV 溢價觀察",
       "status": "clear",
-      "evidence": "目前 1.13x（溢價約 13%）；低於 1.50x 高溢價研究參考線。",
-      "observed_at": "2026-10-31",
+      "evidence": "目前 1.12x（溢價約 12%）；低於 1.50x 高溢價研究參考線。",
+      "observed_at": "2026-11-01",
       "label": "溢價未偏高",
       "detail": "近期走勢仍在建立中；目前先評估溢價水位，尚不判斷是否已從高點明顯收縮。"
     },
@@ -76,8 +76,8 @@
     {
       "id": "mvrv",
       "title": "MVRV Z-Score 過熱",
-      "status": "clear",
-      "evidence": "Z-Score 0.82",
+      "status": "unknown",
+      "evidence": "資料過期",
       "observed_at": "2026-10-28"
     },
     {
@@ -108,10 +108,6 @@
   ],
   "series": {
     "btc": [
-      [
-        "2020-10-22",
-        12987.02
-      ],
       [
         "2020-10-23",
         12937.09
@@ -8907,6 +8903,10 @@
       [
         "2026-10-30",
         77180.42
+      ],
+      [
+        "2026-10-31",
+        77423.98
       ]
     ],
     "mstr": [
@@ -10963,6 +10963,10 @@
       [
         "2026-10-31",
         1.13
+      ],
+      [
+        "2026-11-01",
+        1.12
       ]
     ],
     "mvrv": [
