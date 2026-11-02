@@ -1,10 +1,10 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-11-01T06:44:58+00:00",
+  "generated_at": "2026-11-02T06:44:16+00:00",
   "metrics": {
     "btc": {
-      "value": 77423.98,
-      "date": "2026-10-31",
+      "value": 78230.55,
+      "date": "2026-11-01",
       "freshness": "fresh",
       "source": "Coinbase BTC/USD daily",
       "max_age_days": 2
@@ -18,7 +18,7 @@
     },
     "mnav": {
       "value": 1.12,
-      "date": "2026-11-01",
+      "date": "2026-11-02",
       "freshness": "fresh",
       "source": "mnav.com Strategy MSTR third-party asset-based multiple (NOT official mNAV)",
       "max_age_days": 5
@@ -39,12 +39,12 @@
     }
   },
   "weekly": {
-    "date": "2026-10-25",
-    "close": 80053.16,
+    "date": "2026-11-01",
+    "close": 78230.55,
     "sma": {
-      "50": 76051.87,
-      "200": 67157.27,
-      "300": 57441.81
+      "50": 75732.81,
+      "200": 67465.36,
+      "300": 57592.12
     }
   },
   "summary": {
@@ -62,7 +62,7 @@
       "title": "mNAV 溢價觀察",
       "status": "clear",
       "evidence": "目前 1.12x（溢價約 12%）；低於 1.50x 高溢價研究參考線。",
-      "observed_at": "2026-11-01",
+      "observed_at": "2026-11-02",
       "label": "溢價未偏高",
       "detail": "近期走勢仍在建立中；目前先評估溢價水位，尚不判斷是否已從高點明顯收縮。"
     },
@@ -84,8 +84,8 @@
       "id": "weekly",
       "title": "BTC 週線低於50W MA",
       "status": "clear",
-      "evidence": "週收盤 80053，50W MA 76052",
-      "observed_at": "2026-10-25"
+      "evidence": "週收盤 78231，50W MA 75733",
+      "observed_at": "2026-11-01"
     }
   ],
   "health": [
@@ -108,10 +108,6 @@
   ],
   "series": {
     "btc": [
-      [
-        "2020-10-23",
-        12937.09
-      ],
       [
         "2020-10-24",
         13126.24
@@ -8907,6 +8903,10 @@
       [
         "2026-10-31",
         77423.98
+      ],
+      [
+        "2026-11-01",
+        78230.55
       ]
     ],
     "mstr": [
@@ -10966,6 +10966,10 @@
       ],
       [
         "2026-11-01",
+        1.12
+      ],
+      [
+        "2026-11-02",
         1.12
       ]
     ],
