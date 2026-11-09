@@ -1,10 +1,10 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-11-08T06:37:31+00:00",
+  "generated_at": "2026-11-09T07:06:08+00:00",
   "metrics": {
     "btc": {
-      "value": 75753.96,
-      "date": "2026-11-07",
+      "value": 74754.08,
+      "date": "2026-11-08",
       "freshness": "fresh",
       "source": "Coinbase BTC/USD daily",
       "max_age_days": 2
@@ -17,15 +17,15 @@
       "max_age_days": 5
     },
     "mnav": {
-      "value": 1.14,
-      "date": "2026-11-08",
+      "value": 1.16,
+      "date": "2026-11-09",
       "freshness": "fresh",
       "source": "mnav.com Strategy MSTR third-party asset-based multiple (NOT official mNAV)",
       "max_age_days": 5
     },
     "mvrv": {
-      "value": 0.666,
-      "date": "2026-11-06",
+      "value": 0.668,
+      "date": "2026-11-07",
       "freshness": "fresh",
       "source": "akpasz/btc-data Coin Metrics reconstructed",
       "max_age_days": 3
@@ -39,19 +39,19 @@
     }
   },
   "weekly": {
-    "date": "2026-11-01",
-    "close": 78230.55,
+    "date": "2026-11-08",
+    "close": 74754.08,
     "sma": {
-      "50": 75732.81,
-      "200": 67465.36,
-      "300": 57592.12
+      "50": 75491.72,
+      "200": 67753.51,
+      "300": 57711.73
     }
   },
   "summary": {
-    "regime": "normal",
+    "regime": "caution",
     "counts": {
-      "watch": 0,
-      "clear": 4,
+      "watch": 1,
+      "clear": 3,
       "unknown": 0
     },
     "method": "研究性、未經回測校準"
@@ -61,10 +61,10 @@
       "id": "mnav",
       "title": "mNAV 溢價觀察",
       "status": "clear",
-      "evidence": "目前 1.14x（溢價約 14%）；低於 1.50x 高溢價研究參考線。",
-      "observed_at": "2026-11-08",
+      "evidence": "目前 1.16x（溢價約 16%）；低於 1.50x 高溢價研究參考線。",
+      "observed_at": "2026-11-09",
       "label": "溢價未偏高",
-      "detail": "近期走勢仍在建立中；目前先評估溢價水位，尚不判斷是否已從高點明顯收縮。"
+      "detail": "已比對近期 16 筆同口徑觀測，未觸發高位收縮警示。"
     },
     {
       "id": "ratio",
@@ -78,14 +78,14 @@
       "title": "MVRV Z-Score 過熱",
       "status": "clear",
       "evidence": "Z-Score 0.67",
-      "observed_at": "2026-11-06"
+      "observed_at": "2026-11-07"
     },
     {
       "id": "weekly",
       "title": "BTC 週線低於50W MA",
-      "status": "clear",
-      "evidence": "週收盤 78231，50W MA 75733",
-      "observed_at": "2026-11-01"
+      "status": "watch",
+      "evidence": "週收盤 74754，50W MA 75492",
+      "observed_at": "2026-11-08"
     }
   ],
   "health": [
@@ -108,10 +108,6 @@
   ],
   "series": {
     "btc": [
-      [
-        "2020-10-30",
-        13571.51
-      ],
       [
         "2020-10-31",
         13804.81
@@ -8907,6 +8903,10 @@
       [
         "2026-11-07",
         75753.96
+      ],
+      [
+        "2026-11-08",
+        74754.08
       ]
     ],
     "mstr": [
@@ -11015,6 +11015,10 @@
       [
         "2026-11-08",
         1.14
+      ],
+      [
+        "2026-11-09",
+        1.16
       ]
     ],
     "mvrv": [
@@ -11045,6 +11049,10 @@
       [
         "2026-11-06",
         0.666
+      ],
+      [
+        "2026-11-07",
+        0.668
       ]
     ],
     "ratio": [
