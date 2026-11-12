@@ -1,38 +1,38 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-11-11T07:00:14+00:00",
+  "generated_at": "2026-11-12T07:38:38+00:00",
   "metrics": {
     "btc": {
-      "value": 73697.87,
-      "date": "2026-11-10",
+      "value": 73927.63,
+      "date": "2026-11-11",
       "freshness": "fresh",
       "source": "Coinbase BTC/USD daily",
       "max_age_days": 2
     },
     "mstr": {
-      "value": 121.06999969482422,
-      "date": "2026-11-10",
+      "value": 122.3499984741211,
+      "date": "2026-11-11",
       "freshness": "fresh",
       "source": "Yahoo Finance unofficial",
       "max_age_days": 5
     },
     "mnav": {
-      "value": 1.12,
-      "date": "2026-11-11",
+      "value": 1.13,
+      "date": "2026-11-12",
       "freshness": "fresh",
       "source": "mnav.com Strategy MSTR third-party asset-based multiple (NOT official mNAV)",
       "max_age_days": 5
     },
     "mvrv": {
-      "value": 0.642,
-      "date": "2026-11-09",
+      "value": 0.648,
+      "date": "2026-11-10",
       "freshness": "fresh",
       "source": "akpasz/btc-data Coin Metrics reconstructed",
       "max_age_days": 3
     },
     "ratio": {
-      "value": 0.001608705,
-      "date": "2026-11-10",
+      "value": 0.001660157,
+      "date": "2026-11-11",
       "freshness": "fresh",
       "source": "MSTR close / previous BTC UTC close",
       "max_age_days": 5
@@ -50,8 +50,8 @@
   "summary": {
     "regime": "caution",
     "counts": {
-      "watch": 1,
-      "clear": 3,
+      "watch": 2,
+      "clear": 2,
       "unknown": 0
     },
     "method": "研究性、未經回測校準"
@@ -61,24 +61,24 @@
       "id": "mnav",
       "title": "mNAV 溢價觀察",
       "status": "clear",
-      "evidence": "目前 1.12x（溢價約 12%）；低於 1.50x 高溢價研究參考線。",
-      "observed_at": "2026-11-11",
+      "evidence": "目前 1.13x（溢價約 13%）；低於 1.50x 高溢價研究參考線。",
+      "observed_at": "2026-11-12",
       "label": "溢價未偏高",
-      "detail": "已比對近期 18 筆同口徑觀測，未觸發高位收縮警示。"
+      "detail": "已比對近期 19 筆同口徑觀測，未觸發高位收縮警示。"
     },
     {
       "id": "ratio",
       "title": "MSTR/BTC 相對走弱",
-      "status": "clear",
-      "evidence": "近20交易日變化 -6.7%",
-      "observed_at": "2026-11-10"
+      "status": "watch",
+      "evidence": "近20交易日變化 -10.5%",
+      "observed_at": "2026-11-11"
     },
     {
       "id": "mvrv",
       "title": "MVRV Z-Score 過熱",
       "status": "clear",
-      "evidence": "Z-Score 0.64",
-      "observed_at": "2026-11-09"
+      "evidence": "Z-Score 0.65",
+      "observed_at": "2026-11-10"
     },
     {
       "id": "weekly",
@@ -108,10 +108,6 @@
   ],
   "series": {
     "btc": [
-      [
-        "2020-11-02",
-        13563.22
-      ],
       [
         "2020-11-03",
         14035.8
@@ -8907,6 +8903,10 @@
       [
         "2026-11-10",
         73697.87
+      ],
+      [
+        "2026-11-11",
+        73927.63
       ]
     ],
     "mstr": [
@@ -10961,6 +10961,10 @@
       [
         "2026-11-10",
         121.06999969482422
+      ],
+      [
+        "2026-11-11",
+        122.3499984741211
       ]
     ],
     "mnav": [
@@ -11035,6 +11039,10 @@
       [
         "2026-11-11",
         1.12
+      ],
+      [
+        "2026-11-12",
+        1.13
       ]
     ],
     "mvrv": [
@@ -11077,6 +11085,10 @@
       [
         "2026-11-09",
         0.642
+      ],
+      [
+        "2026-11-10",
+        0.648
       ]
     ],
     "ratio": [
@@ -13131,6 +13143,10 @@
       [
         "2026-11-10",
         0.001608705
+      ],
+      [
+        "2026-11-11",
+        0.001660157
       ]
     ]
   },
