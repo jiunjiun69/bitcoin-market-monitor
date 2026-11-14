@@ -1,38 +1,38 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-11-13T07:09:48+00:00",
+  "generated_at": "2026-11-14T06:56:53+00:00",
   "metrics": {
     "btc": {
-      "value": 71369.9,
-      "date": "2026-11-12",
+      "value": 68236.54,
+      "date": "2026-11-13",
       "freshness": "fresh",
       "source": "Coinbase BTC/USD daily",
       "max_age_days": 2
     },
     "mstr": {
-      "value": 114.41000366210938,
-      "date": "2026-11-12",
+      "value": 111.62000274658203,
+      "date": "2026-11-13",
       "freshness": "fresh",
       "source": "Yahoo Finance unofficial",
       "max_age_days": 5
     },
     "mnav": {
-      "value": 1.14,
-      "date": "2026-11-13",
+      "value": 1.16,
+      "date": "2026-11-14",
       "freshness": "fresh",
       "source": "mnav.com Strategy MSTR third-party asset-based multiple (NOT official mNAV)",
       "max_age_days": 5
     },
     "mvrv": {
-      "value": 0.603,
-      "date": "2026-11-11",
+      "value": 0.608,
+      "date": "2026-11-12",
       "freshness": "fresh",
       "source": "akpasz/btc-data Coin Metrics reconstructed",
       "max_age_days": 3
     },
     "ratio": {
-      "value": 0.001547595,
-      "date": "2026-11-12",
+      "value": 0.001563965,
+      "date": "2026-11-13",
       "freshness": "fresh",
       "source": "MSTR close / previous BTC UTC close",
       "max_age_days": 5
@@ -61,24 +61,24 @@
       "id": "mnav",
       "title": "mNAV 溢價觀察",
       "status": "clear",
-      "evidence": "目前 1.14x（溢價約 14%）；低於 1.50x 高溢價研究參考線。",
-      "observed_at": "2026-11-13",
+      "evidence": "目前 1.16x（溢價約 16%）；低於 1.50x 高溢價研究參考線。",
+      "observed_at": "2026-11-14",
       "label": "溢價未偏高",
-      "detail": "已比對近期 20 筆同口徑觀測，未觸發高位收縮警示。"
+      "detail": "已比對近期 21 筆同口徑觀測，未觸發高位收縮警示。"
     },
     {
       "id": "ratio",
       "title": "MSTR/BTC 相對走弱",
       "status": "clear",
-      "evidence": "近20交易日變化 -7.1%",
-      "observed_at": "2026-11-12"
+      "evidence": "近20交易日變化 -5.7%",
+      "observed_at": "2026-11-13"
     },
     {
       "id": "mvrv",
       "title": "MVRV Z-Score 過熱",
       "status": "clear",
-      "evidence": "Z-Score 0.60",
-      "observed_at": "2026-11-11"
+      "evidence": "Z-Score 0.61",
+      "observed_at": "2026-11-12"
     },
     {
       "id": "weekly",
@@ -108,10 +108,6 @@
   ],
   "series": {
     "btc": [
-      [
-        "2020-11-04",
-        14161.48
-      ],
       [
         "2020-11-05",
         15608.21
@@ -8907,6 +8903,10 @@
       [
         "2026-11-12",
         71369.9
+      ],
+      [
+        "2026-11-13",
+        68236.54
       ]
     ],
     "mstr": [
@@ -10969,6 +10969,10 @@
       [
         "2026-11-12",
         114.41000366210938
+      ],
+      [
+        "2026-11-13",
+        111.62000274658203
       ]
     ],
     "mnav": [
@@ -11051,6 +11055,10 @@
       [
         "2026-11-13",
         1.14
+      ],
+      [
+        "2026-11-14",
+        1.16
       ]
     ],
     "mvrv": [
@@ -11101,6 +11109,10 @@
       [
         "2026-11-11",
         0.603
+      ],
+      [
+        "2026-11-12",
+        0.608
       ]
     ],
     "ratio": [
@@ -13163,6 +13175,10 @@
       [
         "2026-11-12",
         0.001547595
+      ],
+      [
+        "2026-11-13",
+        0.001563965
       ]
     ]
   },
