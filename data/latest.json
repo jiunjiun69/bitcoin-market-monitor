@@ -1,10 +1,10 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-11-14T06:56:53+00:00",
+  "generated_at": "2026-11-15T07:05:41+00:00",
   "metrics": {
     "btc": {
-      "value": 68236.54,
-      "date": "2026-11-13",
+      "value": 64118.79,
+      "date": "2026-11-14",
       "freshness": "fresh",
       "source": "Coinbase BTC/USD daily",
       "max_age_days": 2
@@ -17,15 +17,15 @@
       "max_age_days": 5
     },
     "mnav": {
-      "value": 1.16,
-      "date": "2026-11-14",
+      "value": 1.21,
+      "date": "2026-11-15",
       "freshness": "fresh",
       "source": "mnav.com Strategy MSTR third-party asset-based multiple (NOT official mNAV)",
       "max_age_days": 5
     },
     "mvrv": {
-      "value": 0.608,
-      "date": "2026-11-12",
+      "value": 0.533,
+      "date": "2026-11-13",
       "freshness": "fresh",
       "source": "akpasz/btc-data Coin Metrics reconstructed",
       "max_age_days": 3
@@ -61,10 +61,10 @@
       "id": "mnav",
       "title": "mNAV 溢價觀察",
       "status": "clear",
-      "evidence": "目前 1.16x（溢價約 16%）；低於 1.50x 高溢價研究參考線。",
-      "observed_at": "2026-11-14",
+      "evidence": "目前 1.21x（溢價約 21%）；低於 1.50x 高溢價研究參考線。",
+      "observed_at": "2026-11-15",
       "label": "溢價未偏高",
-      "detail": "已比對近期 21 筆同口徑觀測，未觸發高位收縮警示。"
+      "detail": "已比對近期 22 筆同口徑觀測，未觸發高位收縮警示。"
     },
     {
       "id": "ratio",
@@ -77,8 +77,8 @@
       "id": "mvrv",
       "title": "MVRV Z-Score 過熱",
       "status": "clear",
-      "evidence": "Z-Score 0.61",
-      "observed_at": "2026-11-12"
+      "evidence": "Z-Score 0.53",
+      "observed_at": "2026-11-13"
     },
     {
       "id": "weekly",
@@ -108,10 +108,6 @@
   ],
   "series": {
     "btc": [
-      [
-        "2020-11-05",
-        15608.21
-      ],
       [
         "2020-11-06",
         15599.95
@@ -8907,6 +8903,10 @@
       [
         "2026-11-13",
         68236.54
+      ],
+      [
+        "2026-11-14",
+        64118.79
       ]
     ],
     "mstr": [
@@ -11059,6 +11059,10 @@
       [
         "2026-11-14",
         1.16
+      ],
+      [
+        "2026-11-15",
+        1.21
       ]
     ],
     "mvrv": [
@@ -11113,6 +11117,10 @@
       [
         "2026-11-12",
         0.608
+      ],
+      [
+        "2026-11-13",
+        0.533
       ]
     ],
     "ratio": [
