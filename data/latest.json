@@ -1,10 +1,10 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-11-15T07:05:41+00:00",
+  "generated_at": "2026-11-16T07:11:20+00:00",
   "metrics": {
     "btc": {
-      "value": 64118.79,
-      "date": "2026-11-14",
+      "value": 65315.35,
+      "date": "2026-11-15",
       "freshness": "fresh",
       "source": "Coinbase BTC/USD daily",
       "max_age_days": 2
@@ -18,14 +18,14 @@
     },
     "mnav": {
       "value": 1.21,
-      "date": "2026-11-15",
+      "date": "2026-11-16",
       "freshness": "fresh",
       "source": "mnav.com Strategy MSTR third-party asset-based multiple (NOT official mNAV)",
       "max_age_days": 5
     },
     "mvrv": {
-      "value": 0.533,
-      "date": "2026-11-13",
+      "value": 0.438,
+      "date": "2026-11-14",
       "freshness": "fresh",
       "source": "akpasz/btc-data Coin Metrics reconstructed",
       "max_age_days": 3
@@ -39,12 +39,12 @@
     }
   },
   "weekly": {
-    "date": "2026-11-08",
-    "close": 74754.08,
+    "date": "2026-11-15",
+    "close": 65315.35,
     "sma": {
-      "50": 75491.72,
-      "200": 67753.51,
-      "300": 57711.73
+      "50": 74990.64,
+      "200": 67975.68,
+      "300": 57767.18
     }
   },
   "summary": {
@@ -62,9 +62,9 @@
       "title": "mNAV 溢價觀察",
       "status": "clear",
       "evidence": "目前 1.21x（溢價約 21%）；低於 1.50x 高溢價研究參考線。",
-      "observed_at": "2026-11-15",
+      "observed_at": "2026-11-16",
       "label": "溢價未偏高",
-      "detail": "已比對近期 22 筆同口徑觀測，未觸發高位收縮警示。"
+      "detail": "已比對近期 23 筆同口徑觀測，未觸發高位收縮警示。"
     },
     {
       "id": "ratio",
@@ -77,15 +77,15 @@
       "id": "mvrv",
       "title": "MVRV Z-Score 過熱",
       "status": "clear",
-      "evidence": "Z-Score 0.53",
-      "observed_at": "2026-11-13"
+      "evidence": "Z-Score 0.44",
+      "observed_at": "2026-11-14"
     },
     {
       "id": "weekly",
       "title": "BTC 週線低於50W MA",
       "status": "watch",
-      "evidence": "週收盤 74754，50W MA 75492",
-      "observed_at": "2026-11-08"
+      "evidence": "週收盤 65315，50W MA 74991",
+      "observed_at": "2026-11-15"
     }
   ],
   "health": [
@@ -108,10 +108,6 @@
   ],
   "series": {
     "btc": [
-      [
-        "2020-11-06",
-        15599.95
-      ],
       [
         "2020-11-07",
         14834.09
@@ -8907,6 +8903,10 @@
       [
         "2026-11-14",
         64118.79
+      ],
+      [
+        "2026-11-15",
+        65315.35
       ]
     ],
     "mstr": [
@@ -11063,6 +11063,10 @@
       [
         "2026-11-15",
         1.21
+      ],
+      [
+        "2026-11-16",
+        1.21
       ]
     ],
     "mvrv": [
@@ -11121,6 +11125,10 @@
       [
         "2026-11-13",
         0.533
+      ],
+      [
+        "2026-11-14",
+        0.438
       ]
     ],
     "ratio": [
