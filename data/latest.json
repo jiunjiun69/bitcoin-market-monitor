@@ -1,17 +1,17 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-11-16T07:11:20+00:00",
+  "generated_at": "2026-11-17T08:24:48+00:00",
   "metrics": {
     "btc": {
-      "value": 65315.35,
-      "date": "2026-11-15",
+      "value": 64816.79,
+      "date": "2026-11-16",
       "freshness": "fresh",
       "source": "Coinbase BTC/USD daily",
       "max_age_days": 2
     },
     "mstr": {
-      "value": 111.62000274658203,
-      "date": "2026-11-13",
+      "value": 103.02999877929688,
+      "date": "2026-11-16",
       "freshness": "fresh",
       "source": "Yahoo Finance unofficial",
       "max_age_days": 5
@@ -24,15 +24,15 @@
       "max_age_days": 5
     },
     "mvrv": {
-      "value": 0.438,
-      "date": "2026-11-14",
+      "value": 0.308,
+      "date": "2026-11-15",
       "freshness": "fresh",
       "source": "akpasz/btc-data Coin Metrics reconstructed",
       "max_age_days": 3
     },
     "ratio": {
-      "value": 0.001563965,
-      "date": "2026-11-13",
+      "value": 0.001577424,
+      "date": "2026-11-16",
       "freshness": "fresh",
       "source": "MSTR close / previous BTC UTC close",
       "max_age_days": 5
@@ -50,8 +50,8 @@
   "summary": {
     "regime": "caution",
     "counts": {
-      "watch": 1,
-      "clear": 3,
+      "watch": 2,
+      "clear": 2,
       "unknown": 0
     },
     "method": "研究性、未經回測校準"
@@ -69,16 +69,16 @@
     {
       "id": "ratio",
       "title": "MSTR/BTC 相對走弱",
-      "status": "clear",
-      "evidence": "近20交易日變化 -5.7%",
-      "observed_at": "2026-11-13"
+      "status": "watch",
+      "evidence": "近20交易日變化 -9.5%",
+      "observed_at": "2026-11-16"
     },
     {
       "id": "mvrv",
       "title": "MVRV Z-Score 過熱",
       "status": "clear",
-      "evidence": "Z-Score 0.44",
-      "observed_at": "2026-11-14"
+      "evidence": "Z-Score 0.31",
+      "observed_at": "2026-11-15"
     },
     {
       "id": "weekly",
@@ -99,7 +99,8 @@
     },
     {
       "name": "mnav",
-      "status": "ok"
+      "status": "error",
+      "details": "Third-party dated mNAV not present: unexpected page shape"
     },
     {
       "name": "mvrv",
@@ -108,10 +109,6 @@
   ],
   "series": {
     "btc": [
-      [
-        "2020-11-07",
-        14834.09
-      ],
       [
         "2020-11-08",
         15482.9
@@ -8907,6 +8904,10 @@
       [
         "2026-11-15",
         65315.35
+      ],
+      [
+        "2026-11-16",
+        64816.79
       ]
     ],
     "mstr": [
@@ -10973,6 +10974,10 @@
       [
         "2026-11-13",
         111.62000274658203
+      ],
+      [
+        "2026-11-16",
+        103.02999877929688
       ]
     ],
     "mnav": [
@@ -11129,6 +11134,10 @@
       [
         "2026-11-14",
         0.438
+      ],
+      [
+        "2026-11-15",
+        0.308
       ]
     ],
     "ratio": [
@@ -13195,6 +13204,10 @@
       [
         "2026-11-13",
         0.001563965
+      ],
+      [
+        "2026-11-16",
+        0.001577424
       ]
     ]
   },
