@@ -1,24 +1,24 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-11-18T07:52:58+00:00",
+  "generated_at": "2026-11-19T07:50:40+00:00",
   "metrics": {
     "btc": {
-      "value": 64873.18,
-      "date": "2026-11-17",
+      "value": 62981.71,
+      "date": "2026-11-18",
       "freshness": "fresh",
       "source": "Coinbase BTC/USD daily",
       "max_age_days": 2
     },
     "mstr": {
-      "value": 96.5,
-      "date": "2026-11-17",
+      "value": 90.31999969482422,
+      "date": "2026-11-18",
       "freshness": "fresh",
       "source": "Yahoo Finance unofficial",
       "max_age_days": 5
     },
     "mnav": {
-      "value": 1.01,
-      "date": "2026-11-18",
+      "value": 0.98,
+      "date": "2026-11-19",
       "freshness": "fresh",
       "source": "mnav.com Strategy MSTR third-party asset-based multiple (NOT official mNAV)",
       "max_age_days": 5
@@ -31,8 +31,8 @@
       "max_age_days": 3
     },
     "ratio": {
-      "value": 0.001488812,
-      "date": "2026-11-17",
+      "value": 0.001392255,
+      "date": "2026-11-18",
       "freshness": "fresh",
       "source": "MSTR close / previous BTC UTC close",
       "max_age_days": 5
@@ -61,17 +61,17 @@
       "id": "mnav",
       "title": "mNAV 溢價觀察",
       "status": "clear",
-      "evidence": "目前 1.01x（溢價約 1%）；低於 1.50x 高溢價研究參考線。",
-      "observed_at": "2026-11-18",
+      "evidence": "目前 0.98x（折價約 2%）；低於 1.50x 高溢價研究參考線。",
+      "observed_at": "2026-11-19",
       "label": "溢價未偏高",
-      "detail": "已比對近期 24 筆同口徑觀測，未觸發高位收縮警示。"
+      "detail": "已比對近期 25 筆同口徑觀測，未觸發高位收縮警示。"
     },
     {
       "id": "ratio",
       "title": "MSTR/BTC 相對走弱",
       "status": "watch",
-      "evidence": "近20交易日變化 -19.5%",
-      "observed_at": "2026-11-17"
+      "evidence": "近20交易日變化 -19.8%",
+      "observed_at": "2026-11-18"
     },
     {
       "id": "mvrv",
@@ -108,10 +108,6 @@
   ],
   "series": {
     "btc": [
-      [
-        "2020-11-09",
-        15342.25
-      ],
       [
         "2020-11-10",
         15315.03
@@ -8907,6 +8903,10 @@
       [
         "2026-11-17",
         64873.18
+      ],
+      [
+        "2026-11-18",
+        62981.71
       ]
     ],
     "mstr": [
@@ -10981,6 +10981,10 @@
       [
         "2026-11-17",
         96.5
+      ],
+      [
+        "2026-11-18",
+        90.31999969482422
       ]
     ],
     "mnav": [
@@ -11079,6 +11083,10 @@
       [
         "2026-11-18",
         1.01
+      ],
+      [
+        "2026-11-19",
+        0.98
       ]
     ],
     "mvrv": [
@@ -13223,6 +13231,10 @@
       [
         "2026-11-17",
         0.001488812
+      ],
+      [
+        "2026-11-18",
+        0.001392255
       ]
     ]
   },
